@@ -1,0 +1,1 @@
+Use Azure Active Directory registrations to access the keys
