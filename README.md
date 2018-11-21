@@ -20,8 +20,22 @@ Credentials:
 az aks get-credentials --resource-group sylvain-k8s-resources --name sylvain-k8s
 ```
 
+Install tiller:
+
+```
+helm init
+```
+
 Dashboard:
 
 ```
 az aks browse --resource-group sylvain-k8s-resources --name sylvain-k8s
+```
+
+## Get info
+
+To check the effects of the chart, here is a way to generate the manifest:
+
+```
+helm get manifest my-app
 ```
