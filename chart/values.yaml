@@ -1,0 +1,6 @@
+# Overriding requirements chart conf
+
+redis:
+  master:
+    readinessProbe:
+      timeoutSeconds: 2
