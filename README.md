@@ -1,4 +1,12 @@
+## Intro
+
+This is a playground app to experiment things related to Terraform, Kubernetes, Helm and Helm charts on an azure free tier account.
+
+Most of the commands have their counterpart in the makefile for convenience.
+
 ## Install
+
+Azure provides a neat way to quickly start with kubernetes:
 
 Install kubetcl:
 
