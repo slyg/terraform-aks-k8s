@@ -1,26 +1,36 @@
-init:
+.chart_folder := ./chart
+.chart_depdendencies := ./chart/charts
+.app_name := my-app
+
+infra-init:
 	terraform init
 
-create-infra:
+infra-create:
 	@echo 
 	@echo "📌 Reminder: use Azure Active Directory > App registrations to access the keys"
 	@echo
 	terraform apply
 
-destroy-infra:
+infra-destroy:
 	@echo
 	@echo "📌 Reminder: use Azure Active Directory > App registrations to access the keys"
 	@echo
 	terraform destroy
 
-./chart/charts:
-	helm dependency build ./chart
+$(.chart_depdendencies):
+	helm dependency build $(.chart_folder)
 
-deploy-helm: ./chart/charts
-	helm upgrade --install my-app ./chart --debug --dry-run
+helm-deploy-debug: $(.chart_depdendencies)
+	helm upgrade --install $(.app_name) $(.chart_folder) --debug --dry-run
 
-destroy-helm:
-	helm delete --purge my-app
+helm-deploy: $(.chart_depdendencies)
+	helm upgrade --install $(.app_name) $(.chart_folder)
 
-.PHONY: init create-infra destroy-infra create-helm destroy-helm
+helm-clean-deps:
+	rm -rf $(.chart_depdendencies)
+	rm $(.chart_folder)/requirements.lock
 
+helm-destroy:
+	helm delete --purge $(.app_name)
+
+.PHONY: infra-init infra-create infra-destroy helm-deploy helm-deploy-debug helm-clean-deps helm-destroy
