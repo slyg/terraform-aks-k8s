@@ -32,10 +32,24 @@ Dashboard:
 az aks browse --resource-group sylvain-k8s-resources --name sylvain-k8s
 ```
 
-## Get info
+## Get info about the generated manifest
 
 To check the effects of the chart, here is a way to generate the manifest:
 
 ```
 helm get manifest my-app
+```
+
+## Add alias repo
+
+As far as the subscription has access to it. e.g.:
+
+```
+az acr helm repo add --name hmctssandbox
+```
+
+List the repo aliases:
+
+```
+helm repo list
 ```
