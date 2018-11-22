@@ -33,4 +33,7 @@ helm-clean-deps:
 helm-destroy:
 	helm delete --purge $(.app_name)
 
-.PHONY: infra-init infra-create infra-destroy helm-deploy helm-deploy-debug helm-clean-deps helm-destroy
+helm-get-manifest:
+	helm get manifest $(.app_name) > manifest.yaml
+
+.PHONY: infra-init infra-create infra-destroy helm-deploy helm-deploy-debug helm-clean-deps helm-destroy helm-get-manifest
